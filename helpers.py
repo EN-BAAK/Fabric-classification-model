@@ -36,16 +36,22 @@ def split_data_set(
         return train_ds, test_ds
 
 
-def view_dataset_batches(dataset, ar_classes, take=1, no_imgs=12, figsize=10, rows=3, columns=4):
+def view_dataset_batches(dataset, ar_classes, take=1, no_imgs=12, figsize=10, rows=3, columns=4, is_gray=False):
     plt.figure(figsize=(figsize, figsize))
 
     for image_batch, labels_batch in dataset.take(take):
         for i in range(min(no_imgs, len(image_batch))):
             plt.subplot(rows, columns, i + 1)
-            plt.imshow(image_batch[i].numpy().astype("uint8"))
 
-            label_index = labels_batch[i].numpy()
-            
+            image = image_batch[i].numpy().astype("uint8")
+
+            if is_gray:
+                image = image.squeeze() 
+                plt.imshow(image, cmap='gray')
+            else:
+                plt.imshow(image)
+
+            label_index = labels_batch[i].numpy().item()
             plt.title(ar_classes[label_index])
             plt.axis("off")
 

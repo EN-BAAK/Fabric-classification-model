@@ -78,7 +78,7 @@ def get_class_distribution(dataset, class_names):
 
 def plot_bar(data, title):
     plt.figure(figsize=(10, 5))
-    sns.barplot(data=data, x='Class', y='Count', palette='cubehelix')
+    sns.barplot(data=data, x='Class', y='Count', palette='Set3')
     plt.title(title)
     plt.xticks(rotation=45, ha='right')
     plt.grid(axis='y', linestyle='--', alpha=0.6)

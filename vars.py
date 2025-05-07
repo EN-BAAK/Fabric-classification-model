@@ -1,0 +1,28 @@
+DATASET_DIRECTORY="../dataset"
+
+IMAGE_SIZE=400
+
+BATCH_SIZE=32
+
+TRAINING_SIZE=0.8
+
+SHUFFLE_SIZE=1000
+
+SEED=200
+
+CHANNELS=1
+
+COLORS = [
+    "#2F4F4F",
+    "#A52A2A",
+    "#800000",
+    "#006400",
+    "#8B0000",
+    "#4B0082",
+    "#556B2F",
+    "#B22222",
+    "#2E8B57",
+    "#483D8B",
+    "#9ACD32",
+    "#8B4513",
+]

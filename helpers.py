@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import seaborn as sns
 import pandas as pd
+from vars import COLORS
 
 def split_data_set(
     dataset,
@@ -78,7 +79,7 @@ def get_class_distribution(dataset, class_names):
 
 def plot_bar(data, title):
     plt.figure(figsize=(10, 5))
-    sns.barplot(data=data, x='Class', y='Count', palette='Set3')
+    sns.barplot(data=data, x='Class', y='Count', palette=COLORS)
     plt.title(title)
     plt.xticks(rotation=45, ha='right')
     plt.grid(axis='y', linestyle='--', alpha=0.6)

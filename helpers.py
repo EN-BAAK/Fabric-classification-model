@@ -2,6 +2,8 @@ from typing import Optional, Tuple, Union
 from math import floor
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import seaborn as sns
+import pandas as pd
 
 def split_data_set(
     dataset,
@@ -61,3 +63,31 @@ def view_dataset_batches(dataset, ar_classes, take=1, no_imgs=12, figsize=10, ro
 def convert_to_gray_scale(img, label):
     img = tf.image.rgb_to_grayscale(img)
     return img, label
+
+def get_class_distribution(dataset, class_names):
+    all_labels = []
+
+    for _, labels in dataset:
+        all_labels.extend(labels.numpy())
+
+    class_labels = [class_names[i] for i in all_labels]
+    df = pd.DataFrame({'Class': class_labels})
+    class_counts = df['Class'].value_counts().reset_index()
+    class_counts.columns = ['Class', 'Count']
+    return class_counts
+
+def plot_bar(data, title):
+    plt.figure(figsize=(10, 5))
+    sns.barplot(data=data, x='Class', y='Count', palette='cubehelix')
+    plt.title(title)
+    plt.xticks(rotation=45, ha='right')
+    plt.grid(axis='y', linestyle='--', alpha=0.6)
+    plt.tight_layout()
+    plt.show()
+
+def plot_pie(data, title):
+    plt.figure(figsize=(8, 8))
+    plt.pie(data['Count'], labels=data['Class'], autopct='%1.1f%%', startangle=140)
+    plt.title(title)
+    plt.axis('equal')
+    plt.show()

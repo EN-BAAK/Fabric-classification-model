@@ -36,11 +36,4 @@ for folder_name in os.listdir(base_dir):
 
     image_files.sort()
 
-    if len(image_files) > 100:
-        for img_path in image_files[100:]:
-            os.remove(img_path)
-            print(f"Deleted extra image: {img_path}")
-    else:
-        print(f"{folder_name}: {len(image_files)} images — no need to delete.")
-
 print("Cleanup complete.")
